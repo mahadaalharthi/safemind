@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeMind | عالمك الرقمي الآمن</title>
+<meta name="description" content="SafeMind — موقع تفاعلي للأطفال لتعلم التفكير الناقد والوعي الذاتي في البيئة الرقمية">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0d9488;
+  --teal-light: #14b8a6;
+  --navy: #1a3a5c;
+  --gold: #f5a623;
+  --coral: #ff6b6b;
+  --purple: #8b5cf6;
+  --green: #22c55e;
+  --sky: #38bdf8;
+  --bg: #f0fdf9;
+  --white: #ffffff;
+  --text: #1e293b;
+  --soft: #64748b;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* === STARS BG === */
+.stars {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: linear-gradient(180deg, #0f172a 0%, #1a3a5c 100%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* === NAV === */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 3px solid var(--teal);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 65px;
+  box-shadow: 0 4px 20px rgba(13,148,136,0.1);
+}
+.nav-logo {
+  font-size: 1.5rem; font-weight: 900;
+  color: var(--navy);
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo span { color: var(--teal); }
+.nav-stars {
+  display: flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, var(--gold), #f97316);
+  color: white; border-radius: 50px;
+  padding: 6px 16px; font-size: 0.88rem; font-weight: 800;
+}
+
+/* === HERO === */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0f172a 0%, #1a3a5c 40%, #0d9488 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 80px 24px 60px;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.hero-bg-circles {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.hbc {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  animation: pulse 6s ease-in-out infinite;
+}
+.hbc:nth-child(1){width:400px;height:400px;top:-100px;right:-100px;animation-delay:0s}
+.hbc:nth-child(2){width:300px;height:300px;bottom:-50px;left:-80px;animation-delay:2s}
+.hbc:nth-child(3){width:200px;height:200px;top:40%;left:10%;animation-delay:4s}
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.1);opacity:1} }
+
+.hero-emoji {
+  font-size: 5rem;
+  animation: bounce 2s ease-in-out infinite;
+  margin-bottom: 20px;
+  position: relative; z-index: 2;
+}
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+
+.hero h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900; color: white;
+  line-height: 1.2; margin-bottom: 16px;
+  position: relative; z-index: 2;
+  animation: fadeUp 0.8s ease both;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+.hero p {
+  font-size: 1.1rem; color: rgba(255,255,255,0.8);
+  max-width: 500px; line-height: 1.7; margin-bottom: 36px;
+  position: relative; z-index: 2;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  position: relative; z-index: 2;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+.btn-gold {
+  background: var(--gold); color: var(--navy);
+  border: none; border-radius: 50px;
+  padding: 14px 32px; font-family: 'Tajawal', sans-serif;
+  font-size: 1rem; font-weight: 800;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+}
+.btn-gold:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 30px rgba(245,166,35,0.5); }
+.btn-outline {
+  background: transparent; color: white;
+  border: 2.5px solid rgba(255,255,255,0.5); border-radius: 50px;
+  padding: 14px 32px; font-family: 'Tajawal', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+.hero-cards {
+  display: flex; gap: 16px; margin-top: 52px;
+  position: relative; z-index: 2;
+  animation: fadeUp 0.8s 0.6s ease both;
+  flex-wrap: wrap; justify-content: center;
+}
+.hero-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 20px; padding: 20px 24px;
+  text-align: center; color: white; min-width: 130px;
+}
+.hero-card-icon { font-size: 2rem; margin-bottom: 8px; }
+.hero-card-num { font-size: 1.8rem; font-weight: 900; color: var(--gold); }
+.hero-card-label { font-size: 0.78rem; opacity: 0.8; margin-top: 2px; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+/* === SECTIONS === */
+section { padding: 80px 24px; }
+.container { max-width: 1000px; margin: 0 auto; }
+.sec-title {
+  text-align: center; margin-bottom: 48px;
+}
+.sec-badge {
+  display: inline-block;
+  background: #ccfbf1; color: var(--teal);
+  border-radius: 50px; padding: 6px 18px;
+  font-size: 0.82rem; font-weight: 800;
+  margin-bottom: 12px; letter-spacing: 0.05em;
+}
+.sec-title h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 900; color: var(--navy);
+  line-height: 1.3;
+}
+.sec-title h2 em { color: var(--teal); font-style: normal; }
+.sec-title p { color: var(--soft); font-size: 1rem; margin-top: 10px; line-height: 1.7; }
+
+/* === WORLDS === */
+.worlds { background: white; }
+.worlds-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.world-card {
+  border-radius: 24px; padding: 32px 28px;
+  cursor: pointer; transition: all 0.3s;
+  position: relative; overflow: hidden;
+  border: 3px solid transparent;
+}
+.world-card:hover { transform: translateY(-6px); border-color: var(--teal); }
+.world-card.teal { background: linear-gradient(135deg, #f0fdf9, #ccfbf1); }
+.world-card.gold { background: linear-gradient(135deg, #fffbeb, #fef3c7); }
+.world-card.purple { background: linear-gradient(135deg, #faf5ff, #ede9fe); }
+.world-card.coral { background: linear-gradient(135deg, #fff5f5, #fed7d7); }
+.world-icon { font-size: 3.5rem; margin-bottom: 16px; display: block; }
+.world-card h3 { font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+.world-card p { font-size: 0.88rem; color: var(--soft); line-height: 1.7; margin-bottom: 18px; }
+.world-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: white; border-radius: 50px;
+  padding: 6px 14px; font-size: 0.78rem; font-weight: 700;
+  color: var(--navy); box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* === GAME SECTION === */
+.games-sec { background: var(--bg); }
+.games-tabs {
+  display: flex; gap: 8px; margin-bottom: 32px;
+  overflow-x: auto; padding-bottom: 4px;
+}
+.game-tab {
+  flex-shrink: 0; border: none;
+  background: white; border-radius: 50px;
+  padding: 10px 20px; font-family: 'Tajawal', sans-serif;
+  font-size: 0.9rem; font-weight: 700;
+  color: var(--soft); cursor: pointer;
+  transition: all 0.2s; white-space: nowrap;
+  border: 2px solid #e2e8f0;
+}
+.game-tab.active {
+  background: var(--teal); color: white; border-color: var(--teal);
+  box-shadow: 0 4px 14px rgba(13,148,136,0.3);
+}
+.game-panel { display: none; }
+.game-panel.active { display: block; animation: fadeUp 0.3s ease; }
+
+/* GAME 1: True or False */
+.tf-game {
+  background: white; border-radius: 28px; padding: 36px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.tf-score-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 28px;
+}
+.tf-score {
+  background: linear-gradient(135deg, var(--teal), var(--teal-light));
+  color: white; border-radius: 50px; padding: 8px 20px;
+  font-size: 0.9rem; font-weight: 800;
+}
+.tf-lives { font-size: 1.4rem; }
+.tf-question-box {
+  background: linear-gradient(135deg, #f0fdf9, #e0f7fa);
+  border-radius: 20px; padding: 28px;
+  text-align: center; margin-bottom: 24px;
+  border: 2px solid rgba(13,148,136,0.15);
+  min-height: 140px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.tf-scenario-emoji { font-size: 3rem; margin-bottom: 12px; }
+.tf-question-text { font-size: 1.05rem; font-weight: 700; color: var(--navy); line-height: 1.6; }
+.tf-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tf-btn {
+  border: none; border-radius: 16px; padding: 18px;
+  font-family: 'Tajawal', sans-serif; font-size: 1rem; font-weight: 800;
+  cursor: pointer; transition: all 0.2s; display: flex;
+  align-items: center; justify-content: center; gap: 8px;
+}
+.tf-btn.true { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
+.tf-btn.false { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+.tf-btn:hover { transform: scale(1.04); }
+.tf-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.tf-feedback {
+  margin-top: 16px; padding: 14px 20px; border-radius: 14px;
+  font-size: 0.92rem; font-weight: 700; text-align: center;
+  display: none;
+}
+.tf-feedback.correct { background: #dcfce7; color: #166534; }
+.tf-feedback.wrong { background: #fee2e2; color: #991b1b; }
+
+/* GAME 2: Feelings */
+.feelings-game {
+  background: white; border-radius: 28px; padding: 36px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.feelings-scenario {
+  background: linear-gradient(135deg, #faf5ff, #ede9fe);
+  border-radius: 20px; padding: 24px;
+  margin-bottom: 24px; border: 2px solid rgba(139,92,246,0.15);
+}
+.feelings-scenario p { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.7; }
+.feelings-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 24px;
+}
+.feeling-btn {
+  border: 3px solid transparent; border-radius: 16px;
+  background: #f8fafc; padding: 16px 8px;
+  cursor: pointer; text-align: center; transition: all 0.2s;
+  font-family: 'Tajawal', sans-serif;
+}
+.feeling-btn:hover { border-color: var(--purple); transform: scale(1.05); }
+.feeling-btn.selected { border-color: var(--purple); background: #ede9fe; }
+.feeling-emoji { font-size: 2rem; display: block; margin-bottom: 6px; }
+.feeling-label { font-size: 0.75rem; font-weight: 700; color: var(--navy); }
+.feelings-reflect {
+  background: #f0fdf9; border-radius: 16px; padding: 20px;
+  display: none;
+}
+.feelings-reflect h4 { font-size: 0.95rem; font-weight: 800; color: var(--teal); margin-bottom: 10px; }
+.feelings-reflect p { font-size: 0.88rem; color: var(--soft); line-height: 1.7; }
+
+/* GAME 3: Detective */
+.detective-game {
+  background: white; border-radius: 28px; padding: 36px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.detective-header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+}
+.detective-avatar { font-size: 3rem; }
+.detective-header h3 { font-size: 1.1rem; font-weight: 900; color: var(--navy); }
+.detective-header p { font-size: 0.85rem; color: var(--soft); }
+.content-card {
+  border: 2px solid #e2e8f0; border-radius: 20px; padding: 24px;
+  margin-bottom: 20px; position: relative;
+}
+.content-card-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.fake-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.fake-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); }
+.fake-time { font-size: 0.75rem; color: var(--soft); }
+.content-text { font-size: 0.92rem; color: var(--text); line-height: 1.7; margin-bottom: 16px; }
+.clues-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.clue-item {
+  display: flex; align-items: center; gap: 10px;
+  background: #f8fafc; border-radius: 10px; padding: 10px 14px;
+  cursor: pointer; transition: all 0.2s; border: 2px solid transparent;
+}
+.clue-item:hover { border-color: var(--gold); background: #fffbeb; }
+.clue-item.found { border-color: var(--green); background: #dcfce7; }
+.clue-check { font-size: 1rem; }
+.clue-text { font-size: 0.85rem; color: var(--text); font-weight: 600; }
+.detective-verdict {
+  display: none; padding: 18px 22px; border-radius: 16px;
+  font-size: 0.92rem; font-weight: 700; text-align: center;
+}
+.detective-verdict.fake { background: #fee2e2; color: #991b1b; }
+.detective-verdict.real { background: #dcfce7; color: #166534; }
+
+/* === STORIES === */
+.stories-sec { background: white; }
+.story-card {
+  background: linear-gradient(135deg, #f0fdf9, #ccfbf1);
+  border-radius: 24px; padding: 32px;
+  margin-bottom: 24px; border: 2px solid rgba(13,148,136,0.15);
+}
+.story-header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+}
+.story-icon { font-size: 2.8rem; }
+.story-header h3 { font-size: 1.1rem; font-weight: 900; color: var(--navy); }
+.story-header p { font-size: 0.82rem; color: var(--soft); margin-top: 3px; }
+.story-text {
+  font-size: 0.92rem; color: var(--text); line-height: 1.85;
+  margin-bottom: 24px; background: white; border-radius: 14px;
+  padding: 20px; border-right: 4px solid var(--teal);
+}
+.story-choices h4 { font-size: 0.9rem; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+.story-choice {
+  display: block; width: 100%; text-align: right;
+  background: white; border: 2.5px solid #e2e8f0;
+  border-radius: 14px; padding: 14px 18px;
+  font-family: 'Tajawal', sans-serif; font-size: 0.9rem; font-weight: 700;
+  color: var(--navy); cursor: pointer; transition: all 0.2s;
+  margin-bottom: 10px;
+}
+.story-choice:hover { border-color: var(--teal); background: #f0fdf9; }
+.story-choice.chosen-good { border-color: var(--green); background: #dcfce7; color: #166534; }
+.story-choice.chosen-bad { border-color: var(--coral); background: #fee2e2; color: #991b1b; }
+.story-outcome {
+  display: none; margin-top: 16px;
+  padding: 18px 22px; border-radius: 14px;
+  font-size: 0.9rem; font-weight: 700; line-height: 1.7;
+}
+.story-outcome.good { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
+.story-outcome.bad { background: #fff7ed; color: #9a3412; border: 2px solid #f97316; }
+
+/* === FEELINGS JOURNAL === */
+.journal-sec { background: var(--bg); }
+.journal-box {
+  background: white; border-radius: 28px; padding: 36px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06); max-width: 680px; margin: 0 auto;
+}
+.mood-selector { margin-bottom: 28px; }
+.mood-selector h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 16px; }
+.moods-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.mood-btn {
+  border: 3px solid transparent; border-radius: 16px;
+  background: #f8fafc; padding: 14px 16px;
+  cursor: pointer; text-align: center; transition: all 0.2s;
+  min-width: 75px;
+}
+.mood-btn:hover { transform: scale(1.08); }
+.mood-btn.active { border-color: var(--teal); background: var(--bg); }
+.mood-big { font-size: 2.2rem; display: block; }
+.mood-name { font-size: 0.72rem; font-weight: 700; color: var(--navy); margin-top: 4px; font-family: 'Tajawal', sans-serif; }
+.journal-input-area { margin-bottom: 20px; }
+.journal-input-area label { display: block; font-size: 0.9rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.journal-input-area textarea {
+  width: 100%; border: 2px solid #e2e8f0; border-radius: 14px;
+  padding: 14px 16px; font-family: 'Tajawal', sans-serif;
+  font-size: 0.92rem; resize: none; height: 110px;
+  transition: border-color 0.2s; outline: none; color: var(--text);
+}
+.journal-input-area textarea:focus { border-color: var(--teal); }
+.journal-save {
+  background: linear-gradient(135deg, var(--teal), var(--teal-light));
+  color: white; border: none; border-radius: 50px;
+  padding: 14px 32px; font-family: 'Tajawal', sans-serif;
+  font-size: 0.95rem; font-weight: 800; cursor: pointer;
+  transition: all 0.2s; width: 100%;
+  box-shadow: 0 4px 16px rgba(13,148,136,0.3);
+}
+.journal-save:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,148,136,0.4); }
+.journal-entries { margin-top: 28px; }
+.journal-entries h4 { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 14px; }
+.entry-item {
+  background: var(--bg); border-radius: 14px; padding: 16px 18px;
+  margin-bottom: 10px; border-right: 4px solid var(--teal);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.entry-mood { font-size: 1.6rem; flex-shrink: 0; }
+.entry-text { font-size: 0.85rem; color: var(--text); line-height: 1.6; }
+.entry-date { font-size: 0.72rem; color: var(--soft); margin-top: 4px; }
+
+/* === TIPS === */
+.tips-sec { background: white; }
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.tip-card {
+  border-radius: 20px; padding: 28px; text-align: center;
+  transition: transform 0.2s;
+}
+.tip-card:hover { transform: translateY(-4px); }
+.tip-card.t1 { background: linear-gradient(135deg, #e0f7fa, #b2ebf2); }
+.tip-card.t2 { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+.tip-card.t3 { background: linear-gradient(135deg, #fff8e1, #ffecb3); }
+.tip-card.t4 { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+.tip-card.t5 { background: linear-gradient(135deg, #ede7f6, #d1c4e9); }
+.tip-card.t6 { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+.tip-icon { font-size: 2.8rem; margin-bottom: 14px; display: block; }
+.tip-card h3 { font-size: 1rem; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+.tip-card p { font-size: 0.83rem; color: var(--soft); line-height: 1.7; }
+
+/* === CERTIFICATE === */
+.cert-sec { background: var(--bg); }
+.cert-box {
+  max-width: 580px; margin: 0 auto;
+  background: white; border-radius: 28px; padding: 40px;
+  text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  border: 3px solid var(--teal);
+}
+.cert-stars { font-size: 2rem; letter-spacing: 4px; margin-bottom: 16px; }
+.cert-box h2 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+.cert-box p { font-size: 0.92rem; color: var(--soft); margin-bottom: 24px; line-height: 1.7; }
+.cert-name-input {
+  border: 2px solid #e2e8f0; border-radius: 12px;
+  padding: 12px 16px; font-family: 'Tajawal', sans-serif;
+  font-size: 1rem; text-align: center; outline: none;
+  transition: border-color 0.2s; width: 100%; margin-bottom: 16px;
+}
+.cert-name-input:focus { border-color: var(--teal); }
+.cert-generate {
+  background: linear-gradient(135deg, var(--gold), #f97316);
+  color: white; border: none; border-radius: 50px;
+  padding: 14px 32px; font-family: 'Tajawal', sans-serif;
+  font-size: 1rem; font-weight: 800; cursor: pointer;
+  transition: all 0.2s; width: 100%;
+  box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+}
+.cert-generate:hover { transform: translateY(-2px); }
+.cert-result {
+  display: none; margin-top: 28px;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border-radius: 20px; padding: 28px;
+  border: 2px solid var(--gold);
+}
+.cert-result h3 { font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 6px; }
+.cert-result .cert-name-show { font-size: 1.5rem; font-weight: 900; color: var(--teal); margin: 10px 0; }
+.cert-result p { font-size: 0.85rem; color: var(--soft); line-height: 1.7; }
+
+/* === FOOTER === */
+footer {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  text-align: center; padding: 36px 24px;
+}
+footer .f-logo { font-size: 1.4rem; font-weight: 900; color: white; margin-bottom: 8px; }
+footer p { font-size: 0.82rem; line-height: 1.7; }
+footer em { color: var(--gold); font-style: normal; }
+
+/* Scroll reveal */
+.reveal { opacity:0; transform:translateY(24px); transition:all 0.6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width: 640px) {
+  .feelings-grid { grid-template-columns: repeat(3, 1fr); }
+  .tf-buttons { grid-template-columns: 1fr 1fr; }
+  .hero-cards { gap: 10px; }
+  .hero-card { min-width: 100px; padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🌟 <span>Safe</span>Mind</div>
+  <div class="nav-stars" id="navStars">⭐ 0 نقطة</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-circles">
+    <div class="hbc"></div><div class="hbc"></div><div class="hbc"></div>
+  </div>
+  <div class="hero-emoji">🛡️</div>
+  <h1>مرحباً بك في<br><em>عالمك الرقمي الآمن!</em></h1>
+  <p>هنا تتعلم كيف تكون ذكياً على الإنترنت، تعرف مشاعرك، وتحمي نفسك من المحتوى الضار</p>
+  <div class="hero-btns">
+    <button class="btn-gold" onclick="scrollTo('games')">🎮 العب وتعلم</button>
+    <button class="btn-outline" onclick="scrollTo('stories')">📖 القصص</button>
+  </div>
+  <div class="hero-cards">
+    <div class="hero-card">
+      <div class="hero-card-icon">🎮</div>
+      <div class="hero-card-num">3</div>
+      <div class="hero-card-label">ألعاب تفاعلية</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">📖</div>
+      <div class="hero-card-num">2</div>
+      <div class="hero-card-label">قصص مشوّقة</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">💚</div>
+      <div class="hero-card-num">6</div>
+      <div class="hero-card-label">نصائح ذهبية</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🏆</div>
+      <div class="hero-card-num">1</div>
+      <div class="hero-card-label">شهادة واعٍ</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLDS -->
+<section class="worlds" id="worlds">
+  <div class="container">
+    <div class="sec-title reveal">
+      <div class="sec-badge">🌍 عوالم التعلم</div>
+      <h2>اختر <em>عالمك</em> وابدأ!</h2>
+      <p>كل عالم يعلمك مهارة مهمة تحميك على الإنترنت</p>
+    </div>
+    <div class="worlds-grid">
+      <div class="world-card teal reveal" onclick="scrollTo('games')">
+        <span class="world-icon">🔍</span>
+        <h3>عالم المحقق</h3>
+        <p>تعلم كيف تكتشف الأخبار الكاذبة والمحتوى الضار قبل أن تصدقه!</p>
+        <span class="world-tag">🎮 العب الآن</span>
+      </div>
+      <div class="world-card gold reveal" onclick="scrollTo('feelings')">
+        <span class="world-icon">💛</span>
+        <h3>عالم المشاعر</h3>
+        <p>اكتشف كيف يؤثر الإنترنت على مشاعرك وكيف تتعامل معها بذكاء!</p>
+        <span class="world-tag">❤️ اعرف مشاعرك</span>
+      </div>
+      <div class="world-card purple reveal" onclick="scrollTo('stories')">
+        <span class="world-icon">📖</span>
+        <h3>عالم القصص</h3>
+        <p>عش قصصاً مشوقة واتخذ قرارات تُغيّر النهاية — أنت البطل!</p>
+        <span class="world-tag">✨ اقرأ واختر</span>
+      </div>
+      <div class="world-card coral reveal" onclick="scrollTo('tips')">
+        <span class="world-icon">💡</span>
+        <h3>عالم النصائح</h3>
+        <p>نصائح ذهبية من خبراء الإنترنت الآمن تحميك في كل موقف!</p>
+        <span class="world-tag">🌟 احفظها</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section class="games-sec" id="games">
+  <div class="container">
+    <div class="sec-title reveal">
+      <div class="sec-badge">🎮 ألعاب تفاعلية</div>
+      <h2>العب <em>وتعلم</em> في نفس الوقت!</h2>
+      <p>كل لعبة تكسبك نقاط وتعلمك مهارة حقيقية</p>
+    </div>
+    <div class="games-tabs reveal">
+      <button class="game-tab active" onclick="switchGame('tf')">🔍 حقيقي أم كذب؟</button>
+      <button class="game-tab" onclick="switchGame('feelings')">💛 كيف تشعر؟</button>
+      <button class="game-tab" onclick="switchGame('detective')">🕵️ المحقق الرقمي</button>
+    </div>
+
+    <!-- GAME 1 -->
+    <div class="game-panel active reveal" id="panel-tf">
+      <div class="tf-game">
+        <div class="tf-score-bar">
+          <div class="tf-score">⭐ النقاط: <span id="tfScore">0</span></div>
+          <div class="tf-lives" id="tfLives">❤️❤️❤️</div>
+          <div style="font-size:0.82rem;color:var(--soft)">سؤال <span id="tfCurrent">1</span>/6</div>
+        </div>
+        <div class="tf-question-box">
+          <div class="tf-scenario-emoji" id="tfEmoji">📱</div>
+          <div class="tf-question-text" id="tfQuestion">جارك أرسل لك رسالة يقول فيها أن شركة كبيرة ستعطيك هاتف مجاني لو أعطيتهم رقم بيت!</div>
+        </div>
+        <div class="tf-buttons">
+          <button class="tf-btn true" onclick="answerTF(true)">✅ هذا صحيح وآمن</button>
+          <button class="tf-btn false" onclick="answerTF(false)">❌ هذا كذب وخطر</button>
+        </div>
+        <div class="tf-feedback" id="tfFeedback"></div>
+        <div style="text-align:center;margin-top:18px">
+          <button id="tfNext" onclick="nextTF()" style="display:none;background:var(--teal);color:white;border:none;border-radius:50px;padding:12px 28px;font-family:'Tajawal',sans-serif;font-size:0.95rem;font-weight:800;cursor:pointer">السؤال التالي ←</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME 2 -->
+    <div class="game-panel" id="panel-feelings">
+      <div class="feelings-game">
+        <div class="feelings-scenario">
+          <p id="feelingScenario">😔 رأيت صورة لصديقك مع أصدقاء آخرين في نزهة ولم يدعوك. وجدت الصورة على الإنترنت.</p>
+        </div>
+        <h3 style="font-size:0.95rem;font-weight:800;color:var(--navy);margin-bottom:14px">كيف تشعر الآن؟ اختر:</h3>
+        <div class="feelings-grid" id="feelingsGrid">
+          <button class="feeling-btn" onclick="selectFeeling(this,'حزين','😢','من الطبيعي أن تشعر بالحزن. الحل: تحدث مع صديقك مباشرة بدل ما تحزن بصمت.')">
+            <span class="feeling-emoji">😢</span>
+            <span class="feeling-label">حزين</span>
+          </button>
+          <button class="feeling-btn" onclick="selectFeeling(this,'غاضب','😠','الغضب شعور طبيعي. لكن خذ نفساً عميقاً قبل أي رد، الهدوء يجعلك أقوى!')">
+            <span class="feeling-emoji">😠</span>
+            <span class="feeling-label">غاضب</span>
+          </button>
+          <button class="feeling-btn" onclick="selectFeeling(this,'خائف','😨','الخوف يحميك أحياناً. تحدث مع شخص تثق به عن هذا الشعور.')">
+            <span class="feeling-emoji">😨</span>
+            <span class="feeling-label">خائف</span>
+          </button>
+          <button class="feeling-btn" onclick="selectFeeling(this,'محرج','😳','الإحراج شعور صعب. تذكر: ما تراه على الإنترنت ليس الحقيقة الكاملة دائماً.')">
+            <span class="feeling-emoji">😳</span>
+            <span class="feeling-label">محرج</span>
+          </button>
+          <button class="feeling-btn" onclick="selectFeeling(this,'بخير','😌','رائع! أنت تتعامل مع المواقف بهدوء. هذه مهارة مهمة جداً.')">
+            <span class="feeling-emoji">😌</span>
+            <span class="feeling-label">بخير</span>
+          </button>
+          <button class="feeling-btn" onclick="selectFeeling(this,'مرتبك','😕','الارتباك طبيعي. فكّر: هل هذا الموقف يستحق أن تقلق منه كثيراً؟')">
+            <span class="feeling-emoji">😕</span>
+            <span class="feeling-label">مرتبك</span>
+          </button>
+          <button class="feeling-btn" onclick="selectFeeling(this,'وحيد','😔','الشعور بالوحدة صعب. تحدث مع أمك أو أبوك، هم دائماً موجودون.')">
+            <span class="feeling-emoji">😔</span>
+            <span class="feeling-label">وحيد</span>
+          </button>
+          <button class="feeling-btn" onclick="selectFeeling(this,'سعيد','😊','إذا شعرت بالسعادة هنا فأنت قوي جداً! شارك سعادتك مع من تحب.')">
+            <span class="feeling-emoji">😊</span>
+            <span class="feeling-label">سعيد</span>
+          </button>
+        </div>
+        <div class="feelings-reflect" id="feelingsReflect">
+          <h4 id="reflectTitle">💚 رأينا في شعورك:</h4>
+          <p id="reflectText"></p>
+        </div>
+        <div style="text-align:center;margin-top:20px">
+          <button onclick="nextFeeling()" style="background:var(--purple);color:white;border:none;border-radius:50px;padding:12px 28px;font-family:'Tajawal',sans-serif;font-size:0.92rem;font-weight:800;cursor:pointer">موقف جديد 🔄</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME 3 -->
+    <div class="game-panel" id="panel-detective">
+      <div class="detective-game">
+        <div class="detective-header">
+          <div class="detective-avatar">🕵️</div>
+          <div>
+            <h3>المحقق الرقمي</h3>
+            <p>اكتشف الأدلة واحكم: هل هذا المحتوى حقيقي أم مزيف؟</p>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-header">
+            <div class="fake-avatar">👤</div>
+            <div>
+              <div class="fake-name">حساب مجهول 🔴</div>
+              <div class="fake-time">منذ 5 دقائق</div>
+            </div>
+          </div>
+          <p class="content-text">🚨 عاجل! علماء اكتشفوا أن شرب الماء البارد يوقف النمو عند الأطفال! شارك الخبر قبل فوات الأوان!!!</p>
+        </div>
+        <h4 style="font-size:0.9rem;font-weight:800;color:var(--navy);margin-bottom:12px">🔍 ابحث عن الأدلة — اضغط على كل دليل:</h4>
+        <div class="clues-list" id="cluesList">
+          <div class="clue-item" onclick="findClue(this,0)">
+            <span class="clue-check">🔍</span>
+            <span class="clue-text">الحساب مجهول ولا اسم حقيقي</span>
+          </div>
+          <div class="clue-item" onclick="findClue(this,1)">
+            <span class="clue-check">🔍</span>
+            <span class="clue-text">يستخدم كلمات مخيفة مثل "عاجل!" و"قبل فوات الأوان"</span>
+          </div>
+          <div class="clue-item" onclick="findClue(this,2)">
+            <span class="clue-check">🔍</span>
+            <span class="clue-text">لا يذكر مصدراً علمياً موثوقاً</span>
+          </div>
+          <div class="clue-item" onclick="findClue(this,3)">
+            <span class="clue-check">🔍</span>
+            <span class="clue-text">يطلب منك المشاركة بسرعة دون تفكير</span>
+          </div>
+        </div>
+        <div class="detective-verdict" id="detectiveVerdict"></div>
+        <div style="text-align:center;margin-top:18px">
+          <button id="verdictBtn" onclick="makeVerdict()" style="display:none;background:var(--navy);color:white;border:none;border-radius:50px;padding:12px 28px;font-family:'Tajawal',sans-serif;font-size:0.92rem;font-weight:800;cursor:pointer">📋 أصدر حكمك!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories-sec" id="stories">
+  <div class="container">
+    <div class="sec-title reveal">
+      <div class="sec-badge">📖 قصص تفاعلية</div>
+      <h2>أنت <em>البطل</em> — اختر النهاية!</h2>
+      <p>قصص حقيقية تشبه حياتك — اتخذ القرار الصحيح!</p>
+    </div>
+
+    <!-- Story 1 -->
+    <div class="story-card reveal">
+      <div class="story-header">
+        <span class="story-icon">📱</span>
+        <div>
+          <h3>الرسالة الغريبة</h3>
+          <p>⏱️ قصة قصيرة | تفكير ناقد</p>
+        </div>
+      </div>
+      <div class="story-text">
+        سلمى طفلة عمرها 10 سنوات تحب الإنترنت كثيراً. ذات يوم وصلتها رسالة من شخص مجهول يقول: <strong>"أنتِ فزتِ بجائزة iPad! أرسلي اسمك وعنوان بيتك الآن!"</strong>
+        <br><br>
+        فرحت سلمى جداً وأرادت الرد فوراً... لكنها تذكرت ما تعلمته عن الإنترنت.
+      </div>
+      <div class="story-choices">
+        <h4>🤔 ماذا تفعل سلمى؟</h4>
+        <button class="story-choice" onclick="chooseStory(this,'s1','good','🎉 أحسنتِ سلمى! تحدثت مع أمها وعرفا أنها رسالة احتيال. الشركات الحقيقية لا تطلب معلوماتك الشخصية بهذه الطريقة. نجحتِ في اختبار التفكير الناقد! +10 نقاط ⭐')">
+          أ) تخبر أمها أولاً قبل أي شيء 🏠
+        </button>
+        <button class="story-choice" onclick="chooseStory(this,'s1','bad','⚠️ هذا خطأ! إرسال معلوماتك الشخصية لشخص مجهول خطير جداً. الجوائز الحقيقية لا تُطلب معلومات بهذه الطريقة. تذكر دائماً: اسألي شخصاً بالغاً أولاً!')">
+          ب) ترد فوراً وترسل معلوماتها 📤
+        </button>
+        <button class="story-choice" onclick="chooseStory(this,'s1','good','✅ ممتاز! تجاهل الرسائل المشبوهة خيار حكيم. والأفضل إخبار أمها أيضاً حتى تحمي الآخرين. +5 نقاط ⭐')">
+          ج) تتجاهل الرسالة وتحذفها 🗑️
+        </button>
+      </div>
+      <div class="story-outcome" id="outcome-s1"></div>
+    </div>
+
+    <!-- Story 2 -->
+    <div class="story-card reveal" style="background:linear-gradient(135deg,#faf5ff,#ede9fe);border-color:rgba(139,92,246,0.15)">
+      <div class="story-header">
+        <span class="story-icon">🎮</span>
+        <div>
+          <h3>الصديق الافتراضي</h3>
+          <p>⏱️ قصة قصيرة | وعي ذاتي</p>
+        </div>
+      </div>
+      <div class="story-text" style="border-right-color:var(--purple)">
+        يوسف يحب لعبة إلكترونية ويلعب مع شخص يسمي نفسه "سوبر هيرو". طلب منه "سوبر هيرو" أن يتحدثا على تطبيق آخر وألا يخبر أهله لأن "هذه سرّنا".
+        <br><br>
+        شعر يوسف بشيء غريب في داخله...
+      </div>
+      <div class="story-choices">
+        <h4>🤔 ماذا يفعل يوسف؟</h4>
+        <button class="story-choice" onclick="chooseStory(this,'s2','good','🦸 بطل حقيقي! الشعور الغريب كان تحذيراً مهماً. الأشخاص الجيدون لا يطلبون منك إخفاء صداقتهم عن أهلك. أخبرت أبوك وحمايتك نفسك! +10 نقاط ⭐')" style="border-color:var(--purple)">
+          أ) يخبر أباه فوراً بما حدث 🏠
+        </button>
+        <button class="story-choice" onclick="chooseStory(this,'s2','bad','⚠️ خطر! أي شخص يطلب منك إخفاء شيء عن أهلك يريد أذاك. الأسرار مع الغرباء على الإنترنت خطيرة جداً. أخبر أهلك دائماً!')" style="border-color:var(--purple)">
+          ب) يوافق ويحافظ على السر 🤫
+        </button>
+        <button class="story-choice" onclick="chooseStory(this,'s2','good','✅ جيد! توقفت عن اللعب معه. والأفضل أيضاً إخبار أهلك حتى يساعدوك. +5 نقاط ⭐')" style="border-color:var(--purple)">
+          ج) يتوقف عن اللعب معه ويبتعد 🚪
+        </button>
+      </div>
+      <div class="story-outcome" id="outcome-s2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEELINGS JOURNAL -->
+<section class="journal-sec" id="feelings">
+  <div class="container">
+    <div class="sec-title reveal">
+      <div class="sec-badge">💚 يومية مشاعري</div>
+      <h2>كيف <em>تشعر</em> اليوم؟</h2>
+      <p>سجّل مشاعرك بعد استخدام الإنترنت — هذا يساعدك تفهم نفسك أكثر!</p>
+    </div>
+    <div class="journal-box reveal">
+      <div class="mood-selector">
+        <h3>😊 اختر مزاجك الآن:</h3>
+        <div class="moods-row">
+          <button class="mood-btn" onclick="selectMood(this,'سعيد','😊')">
+            <span class="mood-big">😊</span>
+            <span class="mood-name">سعيد</span>
+          </button>
+          <button class="mood-btn" onclick="selectMood(this,'حزين','😢')">
+            <span class="mood-big">😢</span>
+            <span class="mood-name">حزين</span>
+          </button>
+          <button class="mood-btn" onclick="selectMood(this,'غاضب','😠')">
+            <span class="mood-big">😠</span>
+            <span class="mood-name">غاضب</span>
+          </button>
+          <button class="mood-btn" onclick="selectMood(this,'خائف','😨')">
+            <span class="mood-big">😨</span>
+            <span class="mood-name">خائف</span>
+          </button>
+          <button class="mood-btn" onclick="selectMood(this,'هادئ','😌')">
+            <span class="mood-big">😌</span>
+            <span class="mood-name">هادئ</span>
+          </button>
+        </div>
+      </div>
+      <div class="journal-input-area">
+        <label>✏️ ماذا حدث معك اليوم على الإنترنت؟</label>
+        <textarea id="journalText" placeholder="مثلاً: رأيت فيديو أزعجني... أو لعبت لعبة ممتعة مع أصدقائي..."></textarea>
+      </div>
+      <button class="journal-save" onclick="saveJournal()">💾 احفظ في يوميتي</button>
+      <div class="journal-entries" id="journalEntries" style="display:none">
+        <h4>📔 يومياتي:</h4>
+        <div id="entriesList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips-sec" id="tips">
+  <div class="container">
+    <div class="sec-title reveal">
+      <div class="sec-badge">💡 نصائح ذهبية</div>
+      <h2>قواعد <em>البطل الرقمي</em></h2>
+      <p>احفظها وطبّقها في حياتك اليومية!</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card t1 reveal">
+        <span class="tip-icon">🤔</span>
+        <h3>فكّر قبل أن تصدق</h3>
+        <p>ليس كل ما تراه على الإنترنت حقيقياً. اسأل نفسك: "من قال هذا؟ ولماذا؟"</p>
+      </div>
+      <div class="tip-card t2 reveal">
+        <span class="tip-icon">🏠</span>
+        <h3>أخبر أهلك دائماً</h3>
+        <p>إذا رأيت شيئاً أزعجك أو طلب منك أحد معلوماتك، أخبر أهلك فوراً.</p>
+      </div>
+      <div class="tip-card t3 reveal">
+        <span class="tip-icon">⏰</span>
+        <h3>الإنترنت له وقت</h3>
+        <p>حدّد وقتاً للإنترنت وأوقاتاً للعب والقراءة والأصدقاء الحقيقيين.</p>
+      </div>
+      <div class="tip-card t4 reveal">
+        <span class="tip-icon">🔒</span>
+        <h3>معلوماتك سرّك</h3>
+        <p>لا تعطِ اسمك أو عنوانك أو صورك لأشخاص لا تعرفهم على الإنترنت.</p>
+      </div>
+      <div class="tip-card t5 reveal">
+        <span class="tip-icon">❤️</span>
+        <h3>كن لطيفاً في الكلام</h3>
+        <p>الكلمات على الإنترنت تؤثر في الناس مثل الكلمات في الحياة. كن محترماً.</p>
+      </div>
+      <div class="tip-card t6 reveal">
+        <span class="tip-icon">🛑</span>
+        <h3>قل لا بثقة</h3>
+        <p>إذا طلب منك أحد شيئاً يزعجك، قل لا بثقة. لست مضطراً لأي شيء.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE -->
+<section class="cert-sec" id="certificate">
+  <div class="container">
+    <div class="sec-title reveal">
+      <div class="sec-badge">🏆 شهادتك</div>
+      <h2>احصل على <em>شهادة البطل الرقمي!</em></h2>
+      <p>أكملت رحلتك — الآن احصل على شهادتك!</p>
+    </div>
+    <div class="cert-box reveal">
+      <div class="cert-stars">⭐⭐⭐</div>
+      <h2>🏆 شهادة البطل الرقمي</h2>
+      <p>أكملت برنامج SafeMind وتعلمت كيف تكون آمناً وذكياً في عالمك الرقمي!</p>
+      <input class="cert-name-input" id="certName" placeholder="اكتب اسمك هنا..." type="text">
+      <button class="cert-generate" onclick="generateCert()">🎉 احصل على شهادتك!</button>
+      <div class="cert-result" id="certResult">
+        <div style="font-size:3rem;margin-bottom:12px">🏆</div>
+        <h3>شهادة إتمام</h3>
+        <p>يُشهد بأن</p>
+        <div class="cert-name-show" id="certNameShow"></div>
+        <p>قد أتمّ/أتمّت برنامج <strong>SafeMind</strong> للتفكير الناقد والوعي الذاتي في البيئة الرقمية بنجاح ✨</p>
+        <div style="margin-top:16px;font-size:0.8rem;color:var(--soft)">جدة — 2025 | نقاطك: <strong id="certPoints">0</strong> ⭐</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">🌟 SafeMind</div>
+  <p>عالمك الرقمي الآمن | برنامج إرشادي لأطفال <em>جدة</em><br>
+  تذكر: الإنترنت مكان رائع إذا استخدمته بذكاء 💚</p>
+</footer>
+
+<script>
+// === UTILS ===
+let totalPoints = 0;
+function addPoints(n) {
+  totalPoints += n;
+  document.getElementById('navStars').textContent = '⭐ ' + totalPoints + ' نقطة';
+}
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// === SCROLL REVEAL ===
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+reveals.forEach(r => obs.observe(r));
+
+// === GAME 1: TRUE OR FALSE ===
+const tfQuestions = [
+  {q:"وصلتك رسالة من شخص مجهول يقول إنك فزت بهاتف مجاني ويطلب رقم بيتك!", e:"📱", correct:false, exp:"هذا احتيال! الشركات الحقيقية لا تطلب معلوماتك الشخصية بهذه الطريقة. أخبر أهلك فوراً! ✅"},
+  {q:"صديقك القديم أرسل لك رابط لعبة جديدة وطلب منك تحميلها دون إذن أهلك!", e:"🎮", correct:false, exp:"حتى من الأصدقاء — لا تحمّل أي شيء دون إذن أهلك. قد يحتوي على فيروس! ✅"},
+  {q:"رأيت خبراً مخيفاً يقول تشاركه فوراً لإنقاذ الناس — ولا يذكر مصدراً!", e:"📰", correct:false, exp:"الأخبار المخيفة بدون مصدر غالباً كاذبة! تحقق أولاً، ولا تشارك أي شيء بتسرع ✅"},
+  {q:"موقع تعليمي حكومي نشر معلومات عن الدروس وذكر اسم المدرسة ورقم الهاتف الرسمي.", e:"📚", correct:true, exp:"صحيح! المواقع الحكومية الرسمية موثوقة. الفرق: تجد عليها رقم رسمي وليس طلب معلوماتك الشخصية ✅"},
+  {q:"شخص في لعبة إلكترونية طلب منك إرسال صورتك وقال أنتم أصدقاء مقربون!", e:"🕹️", correct:false, exp:"لا ترسل صورتك أبداً لمجهول على الإنترنت حتى لو بدا ودوداً جداً ✅"},
+  {q:"موقع متخصص في العلوم نشر مقالاً موقعاً من دكتور معروف في جامعة كبيرة.", e:"🔬", correct:true, exp:"صحيح! المقالات الموقعة من خبراء حقيقيين في مؤسسات معروفة موثوقة ✅"},
+];
+let tfIdx = 0, tfScoreVal = 0, tfLivesVal = 3;
+function answerTF(userAns) {
+  const q = tfQuestions[tfIdx];
+  const fb = document.getElementById('tfFeedback');
+  document.querySelectorAll('.tf-btn').forEach(b => b.disabled = true);
+  if(userAns === q.correct) {
+    fb.className = 'tf-feedback correct';
+    fb.textContent = '✅ إجابة صحيحة! +10 نقاط';
+    fb.style.display = 'block';
+    tfScoreVal += 10; addPoints(10);
+    document.getElementById('tfScore').textContent = tfScoreVal;
+  } else {
+    fb.className = 'tf-feedback wrong';
+    fb.textContent = '❌ ' + q.exp;
+    fb.style.display = 'block';
+    tfLivesVal--;
+    const hearts = ['❤️❤️❤️','❤️❤️🖤','❤️🖤🖤','🖤🖤🖤'];
+    document.getElementById('tfLives').textContent = hearts[3-tfLivesVal] || '🖤🖤🖤';
+  }
+  if(tfIdx < tfQuestions.length - 1) document.getElementById('tfNext').style.display = 'inline-block';
+  else {
+    document.getElementById('tfNext').textContent = '🎉 أكملت اللعبة!';
+    document.getElementById('tfNext').style.display = 'inline-block';
+  }
+}
+function nextTF() {
+  tfIdx++;
+  if(tfIdx >= tfQuestions.length) { alert('🎉 أحسنت! أكملت لعبة حقيقي أم كذب!'); tfIdx = 0; tfScoreVal = 0; tfLivesVal = 3; document.getElementById('tfLives').textContent='❤️❤️❤️'; document.getElementById('tfScore').textContent=0; }
+  const q = tfQuestions[tfIdx];
+  document.getElementById('tfEmoji').textContent = q.e;
+  document.getElementById('tfQuestion').textContent = q.q;
+  document.getElementById('tfFeedback').style.display = 'none';
+  document.getElementById('tfNext').style.display = 'none';
+  document.getElementById('tfCurrent').textContent = tfIdx + 1;
+  document.querySelectorAll('.tf-btn').forEach(b => b.disabled = false);
+}
+
+// === GAME 2: FEELINGS ===
+const feelingScenarios = [
+  "😔 رأيت صورة لصديقك مع أصدقاء آخرين في نزهة ولم يدعوك. وجدت الصورة على الإنترنت.",
+  "😡 شخص لا تعرفه كتب تعليقاً سيئاً عنك في لعبة إلكترونية.",
+  "😱 رأيت فيديو مخيفاً على الإنترنت بالخطأ وتشعر بعدم الارتياح.",
+  "🎉 فزت في لعبة مع فريق جميل وأثنى عليك الجميع!",
+  "😕 صديقك يقضي وقتاً كثيراً على الإنترنت ولا يلعب معك كالسابق.",
+];
+let feelingIdx = 0;
+function selectFeeling(btn, name, emoji, msg) {
+  document.querySelectorAll('.feeling-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const ref = document.getElementById('feelingsReflect');
+  document.getElementById('reflectTitle').textContent = emoji + ' شعرت بـ: ' + name;
+  document.getElementById('reflectText').textContent = msg;
+  ref.style.display = 'block';
+  addPoints(5);
+}
+function nextFeeling() {
+  feelingIdx = (feelingIdx + 1) % feelingScenarios.length;
+  document.getElementById('feelingScenario').textContent = feelingScenarios[feelingIdx];
+  document.querySelectorAll('.feeling-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('feelingsReflect').style.display = 'none';
+}
+
+// === GAME 3: DETECTIVE ===
+let cluesFound = 0;
+function findClue(el, idx) {
+  if(el.classList.contains('found')) return;
+  el.classList.add('found');
+  el.querySelector('.clue-check').textContent = '✅';
+  cluesFound++;
+  if(cluesFound >= 3) {
+    document.getElementById('verdictBtn').style.display = 'inline-block';
+  }
+}
+function makeVerdict() {
+  const v = document.getElementById('detectiveVerdict');
+  v.className = 'detective-verdict fake';
+  v.textContent = '🔍 حكم المحقق: هذا المحتوى مزيف! وجدنا ' + cluesFound + ' أدلة تثبت أنه خبر كاذب. لا تصدقه ولا تشاركه! +15 نقطة ⭐';
+  v.style.display = 'block';
+  addPoints(15);
+}
+
+// === GAME TABS ===
+function switchGame(id) {
+  document.querySelectorAll('.game-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+// === STORIES ===
+function chooseStory(btn, storyId, type, msg) {
+  document.querySelectorAll(`[onclick*="'${storyId}'"]`).forEach(b => {
+    b.classList.remove('chosen-good','chosen-bad');
+  });
+  btn.classList.add(type === 'good' ? 'chosen-good' : 'chosen-bad');
+  const out = document.getElementById('outcome-' + storyId);
+  out.className = 'story-outcome ' + type;
+  out.textContent = msg;
+  out.style.display = 'block';
+  if(type === 'good') addPoints(10); else addPoints(2);
+}
+
+// === JOURNAL ===
+let selectedMood = '', selectedMoodEmoji = '';
+const journalData = [];
+function selectMood(btn, name, emoji) {
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedMood = name; selectedMoodEmoji = emoji;
+}
+function saveJournal() {
+  const text = document.getElementById('journalText').value.trim();
+  if(!selectedMood) { alert('اختر مزاجك أولاً! 😊'); return; }
+  if(!text) { alert('اكتب شيئاً عن يومك! ✏️'); return; }
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('ar-SA');
+  journalData.unshift({mood:selectedMood, emoji:selectedMoodEmoji, text, date:dateStr});
+  renderJournal();
+  document.getElementById('journalText').value = '';
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+  selectedMood = ''; selectedMoodEmoji = '';
+  addPoints(5);
+  alert('✅ تم حفظ يومياتك! +5 نقاط');
+}
+function renderJournal() {
+  const container = document.getElementById('entriesList');
+  const wrap = document.getElementById('journalEntries');
+  wrap.style.display = 'block';
+  container.innerHTML = journalData.map(e => `
+    <div class="entry-item">
+      <div class="entry-mood">${e.emoji}</div>
+      <div>
+        <div class="entry-text">${e.text}</div>
+        <div class="entry-date">${e.mood} | ${e.date}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// === CERTIFICATE ===
+function generateCert() {
+  const name = document.getElementById('certName').value.trim();
+  if(!name) { alert('اكتب اسمك أولاً! 😊'); return; }
+  document.getElementById('certNameShow').textContent = name;
+  document.getElementById('certPoints').textContent = totalPoints;
+  document.getElementById('certResult').style.display = 'block';
+  addPoints(20);
+  document.getElementById('certResult').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
